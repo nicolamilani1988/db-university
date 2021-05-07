@@ -1,0 +1,145 @@
+DIPARTIMENTO
+nome: TEXT ; NOT NULLABLE ; UNIQUE
+anno_istituzione: YEAR ; NOT NULLABLE
+mission: TEXT ; NOT NULLABLE
+sede_legale: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+distaccamenti: TEXT ; NOT NULLABLE
+contatti: VARCHAR(128) ; NOT NULLABLE
+num_corsi_di_laurea: TINYINT ; NOT NULLABLE
+corsi_di _laurea: TEXT ; NOT NULLABLE
+direttore: VARCHAR(128) ; NOT NULLABLE
+segretari: VARCHAR(128) ; NOT NULLABLE
+giunta_di_dipartimento: TEXT ; NOT NULLABLE
+rappresentanti_studenti: TEXT ; NOT NULLABLE
+ultimo_anno_fiscale: YEAR ; NOT NULLABLE
+bilancio_approvato: VARCHAR(1) ; DEFAULT(N)
+num_iscritti_tot: INT ; NOT NULLABLE
+num_iscritti_attivi: INT ; NOT NULLABLE
+num_nuovi_iscritti: INT ; NOT NULLABLE
+num_laureati_tot: INT ; NOT NULLABLE
+num_laureati_ultimo_anno: INT ; NOT NULLABLE
+num_rinunce_tot: INT ; NOT NULLABLE
+num_rinunce_ultimo_anno: INT ; NOT NULLABLE
+num_studenti_fuori_corso: INT ; NOT NULLABLE
+aziende_convenzionate: TEXT ; NULLABLE
+
+
+CORSO DI LAUREA
+nome: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+anno_istituzione: YEAR ; NOT NULLABLE
+mission: TEXT ; NOT NULLABLE
+sede_legale: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+distaccamenti: TEXT ; NOT NULLABLE
+ordinamento: VARCHAR(128) ; DEFAULT(vecchio)
+corso_di_laurea_specialistica: VARCHAR(1) ; DEFAULT(N)
+anni_conseguimento_laurea: TINYINT ; DEFAULT(3)
+tot_crediti: TINYINT ; NOT NULLABLE
+esami_scritti: TINYINT ; DEFAULT(0)
+esami_orali: TINYINT ; DEFAULT(0)
+num_corsi: TINYINT ; NOT NULLABLE
+corsi: TEXT ; NOT NULLABLE
+professori_attuali: TEXT ; NOT NULLABLE
+num_iscritti_tot: INT ; DEFAULT(0)
+num_iscritti_attivi: INT ; DEFAULT(0)
+num_nuovi_iscritti: INT ; DEFAULT(0)
+num_laureati_tot: INT ; DEFAULT(0)
+num_laureati_ultimo_anno: INT ; DEFAULT(0)
+num_rinunce_tot: INT ; DEFAULT(0)
+num_rinunce_ultimo_anno: INT ; DEFAULT(0)
+num_studenti_fuori_corso: INT ; DEFAULT(0)
+aziende_convenzionate: TEXT ; NULLABLE
+corsi_specialistici: TEXT ; NULLABLE
+ore_laboratorio: INT ; DEFAULT(0)
+tirocini_previsti: VARCHAR(128) ; DEFAULT(none)
+corsi_formativi_previsti: VARCHAR(128) ; DEFAULT(none)
+
+
+CORSO
+nome: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+anno_istituzione: DATE ; NOT NULLABLE
+materie_trattate: TEXT ; NOT NULLABLE
+descrizione: TEXT ; NULLABLE
+tot_crediti: TINYINT ; NOT NULLABLE
+anno_frequentazione: TINYINT ; NOT NULLABLE
+num_sessioni_esame: TINYINT ; NOT NULLABLE
+periodo_sessioni: DATE ; NOT NULLABLE
+esame_scritto: VARCHAR(1) ; DEFAULT(N)
+esame_orale: VARCHAR(1) ; DEFAULT(N)
+insegnante: VARCHART(128) ; NOT NULLABLE
+assistenti: TEXT ; DEFAULT(none)
+num_promossi_ultimo_anno: INT ; DEFAULT(0)
+media_voto_ultimo_anno: INT ; DEFAULT(0)
+num_bocciati_ultimo_anno: INT ; DEFAULT(0)
+num_promossi_ultima_sessione: INT ; DEFAULT(0)
+media_voto_ultima_sessione: INT ; DEFAULT(0)
+num_bocciati_ultima_sessione: INT ; DEFAULT(0)
+ore_laboratorio: INT ; DEFAULT(0)
+
+
+INSEGNANTE
+Nome: VARCHAR(128) ; NOT NULLABLE
+Cognome: VARCHAR(128) ; NOT NULLABLE
+data_nascita: DATE ; NOT NULLABLE
+indirizzo: VARCHAR(128) ; NOT NULLABLE
+email: VARCHAR(128) ; NULLABLE
+email_universitaria: VARCHAR(128) ; NOT NULLABLE
+telefono: VARCHAR(128) ; NULLABLE
+id_insegnante: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+anno_assunzione: YEAR ; NOT NULLABLE
+RAL_annuale: INT ; NOT NULLABLE
+altri_impieghi: TEXT ; DEFAULT(NONE)
+curriculum_vitae: TEXT ; NULLABLE
+altri_corsi_insegnamento: TEXT ; DEFAULT(NONE)
+corso_insegnamento: VARCHAR(128) ; NOT NULLABLE
+num_appelli: TINYINT ; NOT NULLABLE
+date_appelli: DATE ; NOT NULLABLE
+provvedimenti_disciplinari: TEXT ; DEFAULT(NONE)
+
+
+APPELLO
+mese: VARCHAR(24) ; NOT NULLABLE
+anno: YEAR ; NOT NULLABLE
+id_appello: INT ; AUTO_INCREMENTS ; UNIQUE
+data: DATE ; NOT NULLABLE
+data_prossimo_appello: DATE ; NULLABLE
+tot_studenti_aventi_diritto: INT ; NULLABLE
+tot_iscritti: INT ; NOT NULLABLE
+tot_promossi: INT ; NOT NULLABLE
+tot_bocciati: INT ; NOT NULLABLE
+media_voti: FLOAT(2,2) ; NOT NULLABLE
+tipo_di_esame: VARCHAR(16) ; DEFAULT(scritto)
+
+
+STUDENTE
+nome: VARCHAR(64) ; NOT NULLABLE
+cognome: VARCHAR(64) ; NOT NULLABLE
+num_matricola: INT ; AUTO_INCREMENTS ; UNIQUE
+data_nascita: DATE ; NOT NULLABLE
+indirizzo: VARCHAR(128) ; NOT NULLABLE
+nazionalità: VARCHAR(64) ; NOT NULLABLE
+genere: VARCHAR(32) ; NOT NULLABLE
+telefono: VARCHAR(32) ; NULLABLE
+mail: VARCHAR(128) ; NULLABLE
+mail_universitaria: VARCHAR(128) ; NOT NULLABLE
+username: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+password: VARCHAR(128) ; NOT NULLABLE
+anno_iscrizione: YEAR ; NOT NULLABLE
+fuori_corso: VARCHAR(1) ; DEFAULT(N)
+altri_corsi_frequentati: TEXT ; DEFAULT(none)
+scuola_provenienza: VARCHAR(128) ; NULLABLE
+media_voto: FLOAT(2,2) ; NOT NULLABLE
+quantità_appelli: TINYINT ; DEFAULT(1)
+esami_dati: TINYINT ; NOT NULLABLE
+esami_da_dare: TINYINT ; NOT NULLABLE
+tot_crediti_conseguiti: TINYINT ; NOT NULLABLE
+laurea_triennale_conseguita: VARCHAR(1) ; DEFAULT(N)
+note: TEXT ; NULLABLE
+tot_ore_assenza: TINYINT ; NOT NULLABLE
+
+
+ESITO
+voto: TINYINT ; DEFAULT(0)
+media_voto_pre_appello: FLOAT(2,2) ; DEFAULT(0,0)
+media_voto_aggiornata: FLOAT(2,2) ; DEFAULT(0,0)
+tot_crediti_pre_appello: TINYINT ; DEFAULT(0)
+tot_crediti_aggiornato: TINYINT ; DEFAULT(0)
